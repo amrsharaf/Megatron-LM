@@ -4,10 +4,18 @@
 
 from abc import ABC
 from abc import abstractmethod
+from functools import lru_cache
 
 from .bert_tokenization import FullTokenizer as FullBertTokenizer
 from .gpt2_tokenization import GPT2Tokenizer
 
+is_tiktoken_available = False
+try:
+    import tiktoken
+
+    is_tiktoken_available = True
+except ImportError:
+    pass
 
 def build_tokenizer(args):
     """Initialize tokenizer."""
@@ -39,6 +47,9 @@ def build_tokenizer(args):
     elif args.tokenizer_type == 'NullTokenizer':
         assert args.vocab_size is not None
         tokenizer = _NullTokenizer(args.vocab_size)
+    elif args.tokenizer_type == "CL100kBaseBPETokenizer":
+        assert is_tiktoken_available, "Need tiktoken for this tokenizer"
+        tokenizer = _CL100kBaseBPETokenizer()
     else:
         raise NotImplementedError('{} tokenizer is not '
                                   'implemented.'.format(args.tokenizer_type))
@@ -534,3 +545,106 @@ class _NullTokenizer:
     @property
     def additional_special_tokens_ids(self):
         return None
+
+class _CL100kBaseBPETokenizer(AbstractTokenizer):
+    def __init__(self):
+        super().__init__("cl100k_im")
+
+        self.tokenizer = self.get_tokenizer()
+        self.eod_id = self.tokenizer.encode("<|endoftext|>", allowed_special="all")[0] # 100257
+        self.fim_prefix_id = self.tokenizer.encode("<|fim_prefix|>", allowed_special="all")[0] # 100258
+        self.fim_middle_id = self.tokenizer.encode("<|fim_middle|>", allowed_special="all")[0] # 100259
+        self.fim_suffix_id = self.tokenizer.encode("<|fim_suffix|>", allowed_special="all")[0] # 100260
+        self.endofprompt_id = self.tokenizer.encode("<|endofprompt|>", allowed_special="all")[0] # 100276
+        
+        # include im_start and im_end tokens (https://github.com/openai/tiktoken)
+        # this will be useful for the Harmony / chatml format (https://github.com/openai/openai-python/blob/main/chatml.md)
+        self.im_start_id = self.tokenizer.encode("<|im_start|>", allowed_special="all")[0]  # 100264
+        self.im_end_id = self.tokenizer.encode("<|im_end|>", allowed_special="all")[0]  # 100265
+
+        self._special_tokens_and_ids = {
+            "<|endoftext|>": self.eod_id,
+            "<|fim_prefix|>": self.fim_prefix_id,
+            "<|fim_middle|>": self.fim_middle_id,
+            "<|fim_suffix|>": self.fim_suffix_id,
+            "<|endofprompt|>": self.endofprompt_id,
+            "<|im_start|>": self.im_start_id,
+            "<|im_end|>": self.im_end_id,
+        }
+        
+        
+    def get_tokenizer(self):
+        base = tiktoken.get_encoding("cl100k_base")
+        extra_special_tokens = {
+            "<|im_start|>": 100264,  # ChatML support
+            "<|im_end|>": 100265,  # ChatML support
+        }
+        return tiktoken.Encoding(
+            # If you're changing the set of special tokens, make sure to use a different name
+            # It should be clear from the name what behaviour to expect.
+            name="cl100k_im",
+            pat_str=base._pat_str,
+            mergeable_ranks=base._mergeable_ranks,
+            special_tokens={
+                **base._special_tokens,
+                **extra_special_tokens,
+            }
+        )
+
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        # Remove the unpicklable entries.
+        del state["tokenizer"]
+        return state
+
+    def __setstate__(self, state):
+        self.__dict__.update(state)
+        self.tokenizer = self.get_tokenizer()
+
+    @property
+    def vocab_size(self):
+        return self.tokenizer.n_vocab
+
+    @property
+    @lru_cache
+    def vocab(self):
+        base_dictionary = {
+            self.tokenizer.decode([id]): id for id in range(self.eod_id - 1)
+        }
+        # Seems like keys from eod_id - 1 to endofprompt_id
+        # are special tokens buffer that have not currently been
+        # allocated in the tokenizer
+        base_dictionary.update(self._special_tokens_and_ids)
+        return base_dictionary
+
+    @property
+    @lru_cache
+    def inv_vocab(self):  # id2token
+        id2token = {id: self.tokenizer.decode([id]) for id in range(self.eod_id - 1)}
+        # Seems like keys from eod_id - 1 to endofprompt_id
+        # are special tokens buffer that have not currently been
+        # allocated in the tokenizer
+
+        id2token.update({v : k for k, v in self._special_tokens_and_ids.items()})
+        return id2token
+
+    def tokenize(self, text):
+        return self.tokenizer.encode(text, allowed_special="all")
+
+    def detokenize(self, token_ids):
+        if isinstance(token_ids, int):
+            token_ids = [token_ids]
+        return self.tokenizer.decode(token_ids)
+
+    @property
+    def eod(self):
+        return self.eod_id
+
+    def convert_ids_to_tokens(self, ids):
+        # TODO(bapatra): This is too risky.
+        return list(
+            map(
+                lambda x: x.decode("utf-8", errors="ignore"),
+                self.tokenizer.decode_tokens_bytes(ids),
+            )
+        )

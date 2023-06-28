@@ -21,7 +21,12 @@
                 "--num-attention-heads", "16",
                 "--max-position-embeddings", "8192",
                 "--seq-length", "8192",
-                "--tokenizer-type", "CL100kBaseBPETokenizer"
+                "--tokenizer-type", "CL100kBaseBPETokenizer",
+                "--no-masked-softmax-fusion",
+                "--train-iters", "7152",
+                "--lr", "0.01",
+                "--min-lr", "0.0",
+                "--lr-decay-style", "linear"
             ]
         }
     ]
