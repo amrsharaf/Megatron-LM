@@ -5,7 +5,36 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Current File",
+            "name": "deepspeed",
+            "type": "python",
+            "request": "launch",
+            "module": "deepspeed.launcher.runner",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "CUDA_DEVICE_MAX_CONNECTIONS": "1"
+            },
+            "args": [
+                "--num_gpus", "8",
+                "--num_nodes", "1",
+                "pretrain_gpt.py",
+                "--micro-batch-size", "2",
+                "--num-layers", "6",
+                "--hidden-size", "16",
+                "--num-attention-heads", "16",
+                "--max-position-embeddings", "1024",
+                "--seq-length", "1024",
+                "--tokenizer-type", "CL100kBaseBPETokenizer",
+                "--no-masked-softmax-fusion",
+                "--train-iters", "7152",
+                "--lr", "0.01",
+                "--min-lr", "0.0",
+                "--lr-decay-style", "linear",
+                "--data-path", "/turingnorwayeastpremium_data/datasets/tnlgv4/binarized/cl100k_base/NIH_ExPorter_ftfy_id_text_Document"
+            ]
+        },
+        {
+            "name": "Python: pretrain_gpt.py",
             "type": "python",
             "request": "launch",
             "program": "pretrain_gpt.py",
