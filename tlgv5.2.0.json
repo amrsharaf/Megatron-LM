@@ -9,7 +9,7 @@
     "/mnt/stream/datasets/tnlgv4/binarized/cl100k_base/rn_dedup_shuf_cleaned_0.7_cleaned_text_Document": 0.069907673,
     "/mnt/stream/datasets/tnlgv4/binarized/cl100k_base/CC-2020-50_id_cleaned_text_Document": 0.042578282,
     "/mnt/stream/datasets/tnlgv4/binarized/cl100k_base/CC-2021-04_id_cleaned_text_Document": 0.051229312,
-    "/mnt/stream/datasets/tnlgv4/binarized/cl100k_base/cc-en.rai_filtered_v0.1.subsampled_0.3_Text_Document": 0.214315253,
+    "/mnt/stream/datasets/tnlgv4/binarized/cl100k_base/cc-en.rai_filtered_v0.1_Text_Document": 0.214315253,
     "/mnt/stream/datasets/tnlgv4/binarized/cl100k_base/Pile-CC_id_cleaned_text_Document": 0.031007046,
     "/mnt/stream/datasets/cc_un_filtered/ar/cc-un.v0.1_Text_Document": 0.0016275427207396611,
     "/mnt/stream/datasets/cc_un_filtered/pt/cc-un.v0.1_Text_Document": 0.0008892312730232182,

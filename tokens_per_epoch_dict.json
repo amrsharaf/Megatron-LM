@@ -9,7 +9,7 @@
     "/mnt/stream/datasets/tnlgv4/binarized/cl100k_base/rn_dedup_shuf_cleaned_0.7_cleaned_text_Document": 21160553726,
     "/mnt/stream/datasets/tnlgv4/binarized/cl100k_base/CC-2020-50_id_cleaned_text_Document": 66047016960,
     "/mnt/stream/datasets/tnlgv4/binarized/cl100k_base/CC-2021-04_id_cleaned_text_Document": 79465875868,
-    "/mnt/stream/datasets/tnlgv4/binarized/cl100k_base/cc-en.rai_filtered_v0.1.subsampled_0.3_Text_Document": 95770106152,
+    "/mnt/stream/datasets/tnlgv4/binarized/cl100k_base/cc-en.rai_filtered_v0.1_Text_Document": 319163912608,
     "/mnt/stream/datasets/tnlgv4/binarized/cl100k_base/Pile-CC_id_cleaned_text_Document": 48096180327,
     "/mnt/stream/datasets/cc_un_filtered/ar/cc-un.v0.1_Text_Document": 45612099919,
     "/mnt/stream/datasets/cc_un_filtered/pt/cc-un.v0.1_Text_Document": 25322309087,
@@ -173,5 +173,10 @@
     "/mnt/stream/datasets/code/v1/binarized/cl100k_base/github.TypeScript_tail_text_content_Document": 12619174911,
     "/mnt/stream/datasets/code/v1/binarized/cl100k_base/github.XML_head_text_content_Document": 171026591,
     "/mnt/stream/datasets/code/v1/binarized/cl100k_base/github.XML_middle_text_content_Document": 319552617,
-    "/mnt/stream/datasets/code/v1/binarized/cl100k_base/github.XML_tail_text_content_Document": 10863460676
+    "/mnt/stream/datasets/code/v1/binarized/cl100k_base/github.XML_tail_text_content_Document": 10863460676,
+    "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized/flanv2_cot/_text_document": 17115093,
+    "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized/flanv2_dialog/_text_document": 3683385985,
+    "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized/flanv2_flanv1_cappedat1M/_text_document": 5292121195,
+    "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized/flanv2_niv2/_text_document": 1155994891,
+    "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized/flanv2_t0/_text_document": 14812468086
 }
