@@ -22,7 +22,13 @@ with open('tlgv5.2.0.json', 'r') as f:
                   "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized/flanv2_dialog/_text_document", 
                   "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized/flanv2_flanv1_cappedat1M/_text_document", 
                   "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized/flanv2_niv2/_text_document", 
-                  "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized/flanv2_t0/_text_document"] 
+                  "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized/flanv2_t0/_text_document",
+                  "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized_original_flanv2_hf/conceptofmind_cot_submix_original/_text_document",
+                  "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized_original_flanv2_hf/conceptofmind_flan2021_submix_original/_text_document",
+                  "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized_original_flanv2_hf/conceptofmind_t0_submix_original/_text_document",
+                  "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized_original_flanv2_hf/conceptofmind_dialog_submix_original/_text_document",
+                  "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized_original_flanv2_hf/conceptofmind_niv2_submix_original/_text_document",
+                  ] 
     for path in flan_paths:
         indexed_dataset = MMapIndexedDataset.Index(index_file_path(path), skip_warmup=True)
         tokens_per_epoch = _num_tokens(np.arange(indexed_dataset.sizes.shape[0]), indexed_dataset.sizes)

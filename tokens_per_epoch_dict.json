@@ -178,5 +178,10 @@
     "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized/flanv2_dialog/_text_document": 3683385985,
     "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized/flanv2_flanv1_cappedat1M/_text_document": 5292121195,
     "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized/flanv2_niv2/_text_document": 1155994891,
-    "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized/flanv2_t0/_text_document": 14812468086
+    "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized/flanv2_t0/_text_document": 14812468086,
+    "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized_original_flanv2_hf/conceptofmind_cot_submix_original/_text_document": 52340844,
+    "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized_original_flanv2_hf/conceptofmind_flan2021_submix_original/_text_document": 2035910186,
+    "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized_original_flanv2_hf/conceptofmind_t0_submix_original/_text_document": 1019724786,
+    "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized_original_flanv2_hf/conceptofmind_dialog_submix_original/_text_document": 240436973,
+    "/turingnorwayeastpremium_data/datasets/Instruction_finetuning/flanv2_data_fianl/processed_flanv2/binarized_original_flanv2_hf/conceptofmind_niv2_submix_original/_text_document": 3378922103
 }
