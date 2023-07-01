@@ -1,0 +1,34 @@
+{
+    "train_batch_size" : CONFIG_BATCH_SIZE,
+    "train_micro_batch_size_per_gpu": CONFIG_MBSIZE,
+    "steps_per_print": LOG_INTERVAL,
+  
+    "zero_optimization": {
+      "stage": 0
+    },
+  
+    "gradient_clipping": 1.0,
+    "prescale_gradients": true,
+  
+    "fp16": {
+      "enabled": CONFIG_FP16_ENABLED,
+      "loss_scale": 0,
+      "loss_scale_window": 500,
+      "hysteresis": 2,
+      "min_loss_scale": 1,
+      "initial_scale_power": 15
+    },
+  
+    "bf16": {
+      "enabled": CONFIG_BF16_ENABLED
+    },
+  
+    "wall_clock_breakdown" : true,
+    "nebula":{
+      "enabled": NEBULA_ENABLED,
+      "persistent_storage_path": SAVE_PATH,
+      "persistent_time_interval": 1,
+      "num_of_version_in_retention":2,
+      "enable_nebula_load":false
+    }
+  }  

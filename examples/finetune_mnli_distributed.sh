@@ -24,15 +24,15 @@ python -m torch.distributed.launch $DISTRIBUTED_ARGS ./tasks/main.py \
                --vocab-file $VOCAB_FILE \
                --epochs 5 \
                --pretrained-checkpoint $PRETRAINED_CHECKPOINT \
-               --tensor-model-parallel-size 1 \
+               --model-parallel-size 1 \
                --num-layers 24 \
                --hidden-size 1024 \
                --num-attention-heads 16 \
-               --micro-batch-size 8 \
-               --activations-checkpoint-method uniform \
+               --batch-size 8 \
+               --checkpoint-activations \
                --lr 5.0e-5 \
                --lr-decay-style linear \
-               --lr-warmup-fraction 0.065 \
+               --warmup 0.065 \
                --seq-length 512 \
                --max-position-embeddings 512 \
                --save-interval 500000 \
