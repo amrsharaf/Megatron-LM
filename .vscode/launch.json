@@ -16,7 +16,7 @@
             },
             "args": [
                 "--num_gpus", "8",
-                "--num_nodes", "1",
+                "--num_nodes", "2",
                 "pretrain_gpt.py",
                 "--micro-batch-size", "2",
                 "--num-layers", "24",

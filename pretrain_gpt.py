@@ -113,6 +113,9 @@ def train_valid_test_datasets_provider(train_val_test_num_samples):
 
 if __name__ == "__main__":
 
+    import os
+    # set CUDA_DEVICE_MAX_CONNECTIONS to 1 to avoid NCCL issues
+    os.environ['CUDA_DEVICE_MAX_CONNECTIONS'] = '1'
     pretrain(train_valid_test_datasets_provider,
              model_provider,
              ModelType.encoder_or_decoder,

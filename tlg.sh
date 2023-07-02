@@ -2,8 +2,8 @@
 
 set -euo pipefail
 
-NUM_GPUS=1
-NUM_NODES=1
+NUM_GPUS=16
+NUM_NODES=2
 SAVE_INTERVAL=500  # save every SAVE_INTERVAL iterations
 
 DIR=$(pwd)
